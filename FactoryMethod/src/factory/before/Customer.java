@@ -1,62 +1,42 @@
 package factory.before;
 
 public class Customer {
+	private String name;
+	private Long arrivedAt;
+	private Long fixTime;
 
-    private int customerType;
-    private String customerName;
-    private String customerGrade;
-    private int bonusPoint;
+	private Long waitTime;
 
-    public static final int BRONZE_CUSTOMER = 0;
-    public static final int SILVER_CUSTOMER = 1;
-    public static final int GOLD_CUSTOMER = 2;
+	public Customer(String name, Long arrivedAt, Long fixTime) {
+		this.name = name;
+		this.arrivedAt = arrivedAt;
+		this.fixTime = fixTime;
+	}
 
-    Customer( int customerType, String customerName){
-        this.customerType = customerType;
-        this.customerName = customerName;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getCustomerGrade() {
+	public Long getArrivedAt() {
+		return arrivedAt;
+	}
 
-        switch(customerType) {
-            case BRONZE_CUSTOMER : return "BRONZE";
-            case SILVER_CUSTOMER : return "SILVER";
-            case GOLD_CUSTOMER : return "GOLD";
-            default : return null;
-        }
-    }
+	public Long getFixTime() {
+		return fixTime;
+	}
 
-    public int calcPrice(int price) {
-        switch(customerType) {
-            case BRONZE_CUSTOMER :
-                return price;
-            case SILVER_CUSTOMER :
-                return price - (int)(price * 0.05);
-            case GOLD_CUSTOMER :
-                return price - (int)(price * 0.1);
-            default : return price;
+	public Long getWaitTime() {
+		return waitTime;
+	}
 
-        }
-    }
+	public void setWaitTime(Long waitTime) {
+		this.waitTime = waitTime;
+	}
 
-    public int calcBonusPoint(int price) {
-        switch(customerType) {
-            case BRONZE_CUSTOMER :
-                return bonusPoint += (price * 0.01);
-            case SILVER_CUSTOMER :
-                return bonusPoint += (price * 0.05);
-            case GOLD_CUSTOMER :
-                return bonusPoint += (price * 0.1);
-            default : return price;
-
-        }
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public String toString() {
-        return customerName + "님의 멤버십 등급은 " + getCustomerGrade() + "입니다.";
-    }
+	@Override
+	public String toString() {
+		return name + ", 도착 시간: "
+			+ arrivedAt + "분, 소요시간: "
+			+ fixTime;
+	}
 }
